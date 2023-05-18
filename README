@@ -1,0 +1,36 @@
+Minca Ecaterina-Ioana 324CAb
+
+Am implementat comenzile date de la stdin in client.c. M-am folosit, de asemenea,
+de fisierele sursa din laboratorul 10: buffer.c/buffer.h, helpers.c/helpers.h si
+requests.c/requests.h in care aceste functii in functie de tipul de cere se va pune
+host-ul, se vor completa header-ele si se va pune continutul lor.
+
+Pentru a gestiona lucrul cu obiectele JSON, am folosit din link-ul dat in cerinta,
+biblioteca parson din care am luat fisierele parson.c si parson.h, deoarece am scris
+tema in C.
+
+In client.c, cat timp primesc comenzi diferite de "exit", in functie de ce comanda
+se primeste de la stdin procesez cererea respectiva. Conexiunea o deschid de fiecare
+data in acel while(1), deoarece server-ul se inchide singur dupa un anumit timp.
+Comenzile primite pot fi urmatoarele:
+- register, unde obtin datele despre username si parola despre user; se realizeaza
+cu ajutorul functiilor din parson: json_object_set_string, json_value_init_object,
+json_value_get_object obiectul JSON care apoi este trimis catre server; mesajul primit
+de la server este verificat daca acesta contine "is taken", fapt care ar insemna ca
+username-ul este luat si trebuie sa afisez un mesaj de eroare in acest caz, altfel
+se creeaza acest nou user. 
+-login, am folosit aceeasi functie pentru register si login pentru a avea partea de
+obtinere a username-ului si parolei si diferentiez tipul de actiune dupa parametrul
+command; se salveaza cookies in formatul bun si se marcheaza campul user_coonected
+pentru a fi usoara verificarea ulterior in caz de eroare.
+-enter_library, se salveaza token-ul, eliminand caracterele care sunt in plus;
+-get_books, afiseaza toate cartile pe care le detine user-ul conectat
+-get_book, pe baza unui id primit de la stdin, este intoarsa cartea cu acel id, daca
+aceasta exista
+-add_book, se vor retine informatiile despre cartea pe care dorim sa o adaugam si
+verific formatul pentru numarul de pagini, acesta fiind un numar, nu un string
+-delete_book, care in functie de un id, se sterge cartea care are acel id, daca exista
+-logout, in care resetez toate campurilor
+
+La final, inchid conexiunea.
+

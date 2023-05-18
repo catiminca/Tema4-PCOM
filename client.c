@@ -161,31 +161,19 @@ void add_book(int sockfd) {
             title[strlen(title) - 1] = '\0';
         }
 
-        printf("author = ");
+        printf("author=");
         fgets(author, LINELEN, stdin);
         author[strlen(author) - 1] = '\0';
-        if (strcmp(author, "") == 0) {
-            fgets(author, LINELEN, stdin);
-            author[strlen(author) - 1] = '\0';
-        }
-
-        printf("publisher = "); 
+        
+        printf("publisher="); 
         fgets(publisher, LINELEN, stdin);
         publisher[strlen(publisher) - 1] = '\0';
-        if (strcmp(publisher, "") == 0) {
-            fgets(publisher, LINELEN, stdin);
-            publisher[strlen(publisher) - 1] = '\0';
-        }
-
-        printf("genre = ");
+       
+        printf("genre=");
         fgets(genre, LINELEN, stdin);
         genre[strlen(genre) - 1] = '\0';
-        if (strcmp(genre, "") == 0) {
-            fgets(genre, LINELEN, stdin);
-            genre[strlen(genre) - 1] = '\0';
-        }
-
-        printf("page_count = ");
+        
+        printf("page_count=");
         fgets(page_count, LINELEN, stdin);
         page_count[strlen(page_count) - 1] = '\0';
         if (atoi(page_count) < 1) {
